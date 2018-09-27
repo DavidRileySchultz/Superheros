@@ -34,14 +34,28 @@ namespace Superheros.Controllers
         }
         public ActionResult Details(int id)
         {
-            var heros = db.Superheroes.Where(h => h.ID == id).FirstOrDefault();
-            return View(heros);
+            var hero = db.Superheroes.Where(h => h.ID == id).FirstOrDefault();
+            return View(hero);
         }
 
         public ActionResult Edit(int id)
         {
-            var heros = db.Superheroes.Where(h => h.ID == id).FirstOrDefault();
-            return View(heros);
+            var hero = db.Superheroes.Where(h => h.ID == id).FirstOrDefault();
+            return View(hero);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Superhero superhero)
+        {
+            var hero = db.Superheroes.Where(h => h.ID == superhero.ID).FirstOrDefault();
+            hero.Name = superhero.Name;
+            hero.AlterEgo = superhero.AlterEgo;
+            hero.PrimaryAbility = superhero.PrimaryAbility;
+            hero.SecondaryAbility = superhero.SecondaryAbility;
+            hero.CatchPhrase = superhero.CatchPhrase;
+            db.SaveChanges();
+            var heros = db.Superheroes.ToList();
+            return RedirectToAction("Index");
         }
         //public ActionResult Delete(int id)
         //{
