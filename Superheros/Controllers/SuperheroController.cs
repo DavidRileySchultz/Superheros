@@ -13,7 +13,7 @@ namespace Superheros.Controllers
         // GET: Superhero
         public ActionResult Index()
         {
-            return View(db.Superheroes.ToList());
+            return View(db.Superheroes);
         }
         public ActionResult Create()
         {
@@ -54,12 +54,21 @@ namespace Superheros.Controllers
             hero.SecondaryAbility = superhero.SecondaryAbility;
             hero.CatchPhrase = superhero.CatchPhrase;
             db.SaveChanges();
-            var heros = db.Superheroes.ToList();
             return RedirectToAction("Index");
         }
-        //public ActionResult Delete(int id)
-        //{
-
-        //}
+        public ActionResult Delete(int id)
+        {
+            var hero = db.Superheroes.Where(h => h.ID == id).FirstOrDefault();
+            return View(hero);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(Superhero superhero)
+        {
+            var hero = db.Superheroes.Where(h => h.ID == superhero.ID).FirstOrDefault();
+            db.Superheroes.Remove(hero);
+            db.SaveChanges();
+            return RedirectToAction("index");
+        }
     }
 }
