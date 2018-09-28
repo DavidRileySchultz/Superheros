@@ -9,6 +9,7 @@
 
 </head>
 <body>
+
     @*<div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -45,28 +46,30 @@
                     <a class="nav-link" href="~/Superhero/Index">Superhero List</a>
                 </li>
                 @*<li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>*@
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>*@
             </ul>
             @Html.Partial("_LoginPartial")
             <button type="button" class="btn btn-outline-primary">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</button>
             <button type="button" class="btn btn-outline-primary">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</button>
             <form class="form-inline my-2 my-lg-0">
                 @*<input class="form-control mr-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>*@
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>*@
             </form>
         </div>
     </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />
+       
         @*<footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>*@
     </div>
+    
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
